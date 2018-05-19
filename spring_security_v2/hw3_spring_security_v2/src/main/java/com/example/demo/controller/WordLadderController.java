@@ -4,15 +4,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.constraints.Null;
+import java.io.*;
 import java.util.*;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 
 @RestController
 public class WordLadderController{
-	private static File dictFile = new File("src\\main\\java\\com\\example\\demo\\dictionary.txt");
+    private static InputStream is = WordLadderController.class.getResourceAsStream("/dictionary.txt");
+	//private static File dictFile = new File("dictionary.txt");
 	private static Set<String> bigDict = new HashSet<String>();
 	private static Set<String> smallDict = new HashSet<String>();
 	private static Set<String> popDict = new HashSet<String>();
@@ -32,7 +30,7 @@ public class WordLadderController{
 	{
 		String word = null;
 		try {
-			BufferedReader reader = new BufferedReader(new FileReader(dictFile));
+			BufferedReader reader = new BufferedReader(new InputStreamReader(is));
 			int index=0;
 			while ((word = reader.readLine()) != null) {
 				word = word.toLowerCase();

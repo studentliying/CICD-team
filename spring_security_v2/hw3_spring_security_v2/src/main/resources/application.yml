@@ -5,14 +5,25 @@ spring:
       url: jdbc:mysql://127.0.0.1:3306/user?characterEncoding=utf8
       username: root
       password: iiot
-      stat-view-servlet.login-username: druid
-      stat-view-servlet.login-password: 123456
+      stat-view-servlet:
+        login-username: druid
+        login-password: 123456
   jpa:
     properties:
       hibernate:
         show_sql: true
         format_sql: true
-  mvc:
-    view:
-      prefix: /WEB-INF/jsp/
-      suffix: .jsp
+
+  freemarker:
+    allow-request-override: false
+    cache: true
+    check-template-location: true
+    charset: UTF-8
+    content-type: text/html
+    expose-request-attributes: false
+    expose-session-attributes: false
+    expose-spring-macro-helpers: false
+    template-loader-path: classpath:/template/
+    suffix: .ftl
+server:
+  port: 12345

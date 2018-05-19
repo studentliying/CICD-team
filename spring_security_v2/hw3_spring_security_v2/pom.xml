@@ -4,12 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.esdeath</groupId>
-	<artifactId>ngrams-sevice</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>WordLadder</artifactId>
+	<version>1.0</version>
 	<packaging>jar</packaging>
 
-	<name>ngrams-sevice</name>
-	<description>Sevice of Ngrams project for Spring Boot</description>
+	<name>WordLadder</name>
+	<description>Sevice of Word Ladder project for Spring Boot</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -57,6 +57,12 @@
 			<artifactId>spring-boot-starter-log4j2</artifactId>
 		</dependency>-->
 
+		<!--引入Freemarker依赖-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-freemarker</artifactId>
+		</dependency>
+
 		<!--引入druid最新maven依赖-->
 		<dependency>
 			<groupId>com.alibaba</groupId>
@@ -70,20 +76,12 @@
 			<scope>runtime</scope>
 		</dependency>
 
-		<!-- spring boot tomcat jsp 支持开启 -->
-		<dependency>
-			<groupId>org.apache.tomcat.embed</groupId>
-			<artifactId>tomcat-embed-jasper</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
-		</dependency>
 		<!--servlet支持开启-->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-taglibs</artifactId>

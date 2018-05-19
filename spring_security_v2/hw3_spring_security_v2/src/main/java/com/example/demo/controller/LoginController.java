@@ -10,18 +10,20 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import java.util.Map;
+
 
 @Controller
 public class LoginController
 {
     @RequestMapping(value = "/login",method = RequestMethod.GET)
-    public ModelAndView login(){
-        return new ModelAndView("login");
+    public ModelAndView login(Map<String,Object> map){
+        return new ModelAndView("userlogin");
     }
 
     @RequestMapping(value = "/",method = RequestMethod.GET)
-    public ModelAndView index(){
-        return new ModelAndView("main");
+    public ModelAndView index(Map<String,Object> map){
+        return new ModelAndView("index");
     }
 }
 
