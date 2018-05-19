@@ -1,5 +1,6 @@
-package com.example.demo.service;
+package com.example.demo.configuration;
 
+import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,6 +9,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter
@@ -21,7 +23,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter
 
     @Autowired
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(new UserService()); //user Details Service verification
+        auth.userDetailsService(userService()); //user Details Service verification
     }
 
     @Override
@@ -38,5 +40,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter
                 .and()
                 .logout()
                 .permitAll();//注销请求可直接访问
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new MyPasswordEncoder();
+    }
+
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        //设置UserDetailsService以及密码规则
+        auth.userDetailsService(userService()).passwordEncoder(passwordEncoder());
     }
 }

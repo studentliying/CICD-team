@@ -34,8 +34,10 @@ public class UserService implements UserDetailsService
             throw new UsernameNotFoundException("未查询到用户："+username+"信息！");
         }
         System.out.println(user.getUsername());
-        return new User(user.getUsername(),
-                encoder.encode(user.getPassword()),user.getAuthorities());
+        //String password = encoder.encode(user.getPassword());
+        String password = user.getPassword();
+        return new User(user.getUsername(),password
+                ,user.getAuthorities());
 
     }
 }

@@ -3,7 +3,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>主界面</title>
 </head>
 <body>
     <sec:authorize access="hasRole('ROLE_ADMIN')">

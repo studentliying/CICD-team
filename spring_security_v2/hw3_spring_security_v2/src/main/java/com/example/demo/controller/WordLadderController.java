@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,24 +12,23 @@ import java.io.IOException;
 
 @RestController
 public class WordLadderController{
-	public static File dictFile = new File("src\\main\\java\\com\\example\\demo\\dictionary.txt");
+	private static File dictFile = new File("src\\main\\java\\com\\example\\demo\\dictionary.txt");
 	private static Set<String> bigDict = new HashSet<String>();
 	private static Set<String> smallDict = new HashSet<String>();
 	private static Set<String> popDict = new HashSet<String>();
 	private static Queue<Stack<String>> ladders = new LinkedList<Stack<String>>();
 	
-	public static String temp; 
+	private static String temp;
 
 	private static String replaceOneChar(String str, int i, char ch)
 	{
 		String first = str.substring(0, i);
 		String second = str.substring(i,i+1);
 		String third = str.substring(i+1);
-		String temp = first + ch + third;	
-		return temp;
+		return first + ch + third;
 	}
 
-	public static void createBigDict()
+	private static void createBigDict()
 	{
 		String word = null;
 		try {
@@ -43,7 +42,7 @@ public class WordLadderController{
 				index++;
 			}
 		}
-		catch (IOException e){}
+		catch (IOException e){e.printStackTrace();}
 	}
 	
 
@@ -56,7 +55,7 @@ public class WordLadderController{
 	
 	
 
-	public static String judgeTwoWords(String word1, String word2)
+	private static String judgeTwoWords(String word1, String word2)
 	{
 		if (word1.length() == 0)
 		{
@@ -73,7 +72,7 @@ public class WordLadderController{
 		}
 		word1 = word1.toLowerCase();
 		word2 = word2.toLowerCase();
-		if (word1 == word2)
+		if (word1.equals(word2))
 		{
 			return "The two words must be different.";
 		}
@@ -84,7 +83,7 @@ public class WordLadderController{
 	
 	
 
-	public static void createQueue(String word1)
+	private static void createQueue(String word1)
 	{
 		word1 = word1.toLowerCase();
 		popDict.clear();
@@ -120,7 +119,7 @@ public class WordLadderController{
 	}
 	
 
-	public static Stack<String> findWord2(String word1,String word2)
+	private static Stack<String> findWord2(String word1,String word2)
 	{
 		word1 = word1.toLowerCase();
 		word2 = word2.toLowerCase();

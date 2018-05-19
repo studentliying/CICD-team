@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.controller;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Controller;
@@ -12,12 +12,16 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 
 @Controller
-public class MVCConfig
+public class LoginController
 {
     @RequestMapping(value = "/login",method = RequestMethod.GET)
     public ModelAndView login(){
-        ModelAndView model = new ModelAndView("login");
-        return model;
+        return new ModelAndView("login");
+    }
+
+    @RequestMapping(value = "/",method = RequestMethod.GET)
+    public ModelAndView index(){
+        return new ModelAndView("main");
     }
 }
 
